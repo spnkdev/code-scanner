@@ -12,5 +12,6 @@ function validateParams() {
     const params = new URLSearchParams();
     const myId = params.get('my_id');
     document.write("<OPTION value=1>"+myId+"</OPTION>");
+    console.log('Trigger');
 
 }
