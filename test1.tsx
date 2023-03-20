@@ -7,7 +7,7 @@ app.get("search", function handler(req, res) {
   const idDocument = window.location.href.split('consistency-check/document/')[1].split('/quarter-section')[0];
   var query1 =
     "SELECT ITEM,PRICE FROM PRODUCT WHERE ITEM_CATEGORY='" +
-    idDocument +
+    encodeURI(idDocument) +
     "' ORDER BY PRICE";
   pool.query(query1, [], function(err, results) {
     // process results
