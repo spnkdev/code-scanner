@@ -4,10 +4,11 @@ const app = require("express")(),
 
 app.get("search", function handler(req, res) {
   // BAD: the category might have SQL special characters in it
-  const idDocument = window.location.href.split('consistency-check/document/')[1].split('/quarter-section')[0];
+  const sanitizedhref = encodeURI(window.location.href)
+  const idDocument = sanitizedhref.split('consistency-check/document/')[1].split('/quarter-section')[0];
   var query1 =
     "SELECT ITEM,PRICE FROM PRODUCT WHERE ITEM_CATEGORY='" +
-    encodeURI(idDocument) +
+    idDocument+
     "' ORDER BY PRICE";
   pool.query(query1, [], function(err, results) {
     // process results
